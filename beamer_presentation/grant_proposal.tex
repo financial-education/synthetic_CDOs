@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{lmodern}
+
+\usepackage{fancyvrb}
+\usepackage{bm}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows}
+
+
+\title{New Program Grant Proposal:  \\
+Master in Data Analytics}
+\author{Matthew Brigida\footnote{Associate Professor of Finance, Clarion University of Pennsylvania, 840 Wood St. Clarion PA 16214}}
+\date{May 2014}
+\begin{document}
+\maketitle
+\clearpage
+This grant will my support effort to create a Master in Data Analytics program for Clairon.  Over the summer I will work on a couple important aspects of the program.  These aspects, and the steps I will take, are listed below.
+
+\section{Curriculum}
+
+The first step is to set the topics the program will cover.  So far the curriculum is based largely on the graduate analytics programs at Northwestern and North Carolina State -- these are leading programs.  I will also consider many other programs in finalizing the curriculum.  Once the topics we cover are set, I will distribute these topics among courses with the help of the departments.
+
+An important aspect of the curriculum development will be to make the best use possible of the expertise we have in our faculty.  This may mean adding aspects of leadership, project management, healthcare management, among others to our program. 
+
+\subsection{Database Courses}  
+
+A very important consideration in the curriculum development is our need for courses in ``Big Data''. We will need to cover $NoSQL$ databases -- which are increasingly being used because they, among other things, allow dynamic schemas. This allows companies to add data to databases without changing the structure.  $NoSQL$ is used at companies like Facebook and Twitter, but also increasingly at financial services and other types of firms.  We may need to foster $NoSQL$ expertise at Clarion.
+
+We will also teach traditional $SQL$ (relational database) methods.  We likely have expertise in this field among our faculty.  I will identify those who can teach these topics (and use them in projects).  I will also help these faculty, if needed, with software and methods to interface with various databases, whether though dedicated clients or other programs (statistical packages, Excel, etc).
+
+\section{Program Structure}
+
+Once we have the topics we should cover in the program, I will work with individual departments to set up a curriculum which will cover each of these topics.  A possible structure of how these topics will be covered is illustrated in the figure 1 (see the last page). 
+
+\begin{figure}[H]
+  \centering
+  \caption{Possible structure of the Master in Data Analytics program.}
+  \label{fig:1}
+\usetikzlibrary{shapes.geometric,arrows}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em, node distance=2cm]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{diam} = [diamond, draw, fill=yellow!30, text width=3em, rounded corners, node distance=2.5cm, text centered]
+\tikzstyle{end} = [ellipse, draw, fill=red!30, text width=9em, text centered]
+\tikzstyle{circ} = [circle, draw, fill=red!30, text width=3em, text centered]
+
+\begin{center}
+\begin{tikzpicture}[scale=1, node distance=2cm, auto]
+% \node[draw, fill, star, star points=6, minimum size=5mm] at (0,0){};
+
+ \node[draw, diam,fill, minimum size=5cm] at (0,0)(A){};
+ % \node[above of=A, node distance=1.3cm, text=transparent!40]{\fontfamily{ptm}\fontsize{14}{14}\bfseries\selectfont Analytics};
+ % \node[below of=A, node distance=1.3cm, text=transparent!40]{\fontfamily{ptm}\fontsize{14}{14}\bfseries\selectfont Analytics};
+ \node[above of=A, node distance=1.3cm]{Analytics};
+ \node[below of=A, node distance=1.3cm]{Analytics};
+
+
+
+ \node[draw, block, minimum size=0.1cm] at (0,0)(I){IS \& \\ Lib. Sci.};
+ \node [circ, left of=A,  node distance=4cm] (MM){MGMT \\ MKTG};
+ \node [circ, above of=A,  node distance=4cm] (AC){ACTG};
+% \node [circ,  of=A,  node distance=4cm] (LS){Lib. Sci};
+ \node [circ, right of=A,  node distance=4cm] (F){FIN};
+ \node [circ, below of=A,  node distance=4cm] (E){ECON};
+% \node [text=transparent!40]
+%     {\fontfamily{ptm}\fontsize{14}{14}\bfseries\selectfont Databases};
+% \node [diam] (IS) {IS};
+% \node [diam, below of=Likelihood, node distance=2.25cm] (Max){X};
+% \node [end, below of=Max, node distance=2.05cm] (param){Y};
+% \node [block, right of=Max, node distance=6cm] (Rerun){Z};
+% \node [end, above of=Rerun] (state){W};
+% \node [ ,above of=state] (plot){T};
+ \path [line] (MM)--(A);
+ \path [line] (AC)--(A);
+ \path [line] (E)--(A);
+ \path [line] (F)--(A);
+% \path [line] (Likelihood)--(Max);
+% \path [line] (Max)--(Rerun);
+% \path [line] (Rerun)--(state);
+% \path [line] (Max)--(param);
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+In this structure the core database (and `Big Data') courses are taught by the Information Systems and Library Science faculty.  The `Analytics' portion of the program then builds on this core by teaching methods of analyzing particular types and sizes of data. The responsibility for covering a given analytical topic is delegated to the department whose expertise most closely matches the topic.  Using this methodology we make the most use possible of our available faculty resources.
+
+Note, this is one possible program structure -- a starting point.  I intend to work with departments on this, and will alter any aspect of the structure in accordance with stakeholder consensus.
+
+\section{Other Topics}
+
+Some other topics I hope to address over the summer:
+
+\begin{enumerate}
+\item Are we able to ``team teach'' courses?  
+  \begin{itemize}
+  \item We could have one faculty member teach the database section of a course, and another the statistics.  This enables each faculty member to teach their specialty -- thus having the greatest impact possible.
+  \item Are there union issues with this approach, and are they surmountable?
+  \end{itemize}
+\item Should we add specialty courses in ``Big Data for Healthcare'' or other topics?  
+\item How can this program compliment the MBA and undergraduate programs?
+\end{enumerate}
+
+In sum, there is a great deal of work for me to do on this program over the summer.  This grant will be much appreciated compensation for the work.
+
+\end{document}

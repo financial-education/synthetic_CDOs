@@ -1,0 +1,238 @@
+%{{{
+\documentclass[xcolor=dvipsnames]{beamer}
+%\usecolortheme[named=OliveGreen]{structure}
+\setbeamercolor{frametitle}{fg=White,bg=Blue}
+\setbeamercolor{section in head/foot}{bg=Yellow!60, fg=Black}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{bm}
+\usepackage{tikz}
+%\usepackage[hidelinks]{hyperref}
+
+\usetikzlibrary{shapes.geometric,arrows}
+
+\usefonttheme{serif}
+\usetheme{Copenhagen}
+\title[Synthetic CDOs]{An Introduction to Synthetic Collateralized Debt Obligations}
+\author{Dr. Matthew Brigida}
+\institute{
+	Department of Finance \\
+	College of Business Administration \\
+	Clarion University of Pennsylvania  \\
+	Clarion, PA 16214 \\
+	\texttt{mbrigida@clarion.edu}
+}
+\date{September 25, 2014}
+\begin{document}
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+%}}}
+%
+%Introduction and Motivation
+%
+
+\begin{frame}{Collateralized Debt Obligations (CDOs)}
+CDOs are packages of debt securities, such as mortgages, auto loans, and credit card receivables.  
+\begin{itemize}
+\item The CDO is often divided into {\it tranches} representing payment order.  
+\item Ownership of the debt securities within the CDO is transferred to the CDO buyer.  
+\end{itemize}
+The CDO buyers' investment is passed through to the borrowers, who then make periodic interest payments, which are returned to the CDO buyers as determined by the tranche structure.
+\end{frame}
+%%
+\begin{frame}
+  \frametitle{Benefits of CDOs}
+  \begin{itemize}
+  \item Provides investors with a diversified portfolio of debt securities with low transaction costs. 
+  \item By facilitating investor capital inflows to these debt securities, CDOs provide borrowers with lower financing costs.
+  \item Tranche structure allows varying risk/return profiles to be created from a potentially homogeneous portfolio of securities.
+  \end{itemize}
+\end{frame}
+%%
+\begin{frame}{Synthetic CDOs}
+\begin{itemize}
+\item Provides investors with all the economic benefits of owning the CDOs, just without the transfer of ownership of the underlying debt securities.
+\begin{itemize}
+\item  The underlying portfolio is comprised of Credit Default Swaps (CDS) bought from the Synthetic CDO buyer, the payments on which form the `interest' on the CDO.
+\end{itemize}
+\item Can be created more quickly, and with less expense, than non-synthetic CDOs.
+\item Allows various contract sizes.
+\end{itemize}
+\end{frame}
+%
+\begin{frame}
+  \frametitle{Credit Default Swaps (CDS)}
+CDS are a form of protection, or insurance, on debt securities. 
+\begin{itemize}
+\item The CDS buyer makes periodic premium payments to the CDS seller.
+\item If there is a credit event (default) in the underlying debt securities, then the terms of the CDS would commonly transfer the par value of the defaulted bond in cash from the CDS seller to the buyer. The buyer would transfer the ownership of the defaulted bond to the seller.
+\end{itemize}
+\end{frame}
+%
+\begin{frame}
+  \frametitle{Synthetic CDO}
+To construct a Synthetic CDO:
+\begin{itemize}
+\item[1] An underlying reference portfolio of debt securities is selected.
+\item[2] CDS are sold (by the Synthetic CDO buyer) against tranches of the underlying portfolio. Synthetic CDO buyer puts up margin.
+\item[3] Periodic insurance payments are then passed through from the Synthetic CDO seller to the Synthetic CDO buyer as if they were interest payments.
+\item[4] In the case of defaults on the underlying debt securities, just as in a plain CDO, owners of the lower tranches would lose their capital, which is transferred to the Synthetic CDO seller. 
+\end{itemize}
+\end{frame}
+%
+\begin{frame}
+  \frametitle{Structure of a Synthetic CDO}
+% Tikz graphic
+%{{{
+  \begin{figure}[H]
+  \centering
+%  \caption{Structure of a Synthetic CDO}
+  \label{fig:1}
+\usetikzlibrary{shapes.geometric,arrows}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=6cm, node distance=2cm]
+\tikzstyle{block_wide} = [rectangle, draw, fill=green!20, 
+    text width=10em, text centered, rounded corners, minimum height=1cm, node distance=2cm]
+\tikzstyle{block2} = [rectangle, draw, fill=yellow!20, 
+    text width=5.5em, text centered, rounded corners, minimum height=6cm, node distance=3.5cm]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{diam} = [diamond, draw, fill=yellow!30, text width=3em, rounded corners, node distance=2.5cm, text centered]
+\tikzstyle{block_red} = [rectangle, draw, rounded corners, fill=red!30, text width=9em, text centered]
+\tikzstyle{circ} = [circle, draw, fill=red!30, text width=3em, text centered]
+
+\begin{center}
+\begin{tikzpicture}[scale=1, node distance=2cm, auto]
+% \node[draw, fill, star, star points=6, minimum size=5mm] at (0,0){};
+
+ \node[draw, block ,fill, minimum size=2.6cm] at (0,0)(A){Financial \\ Intermediary};
+ \node[block_wide, above of=A, node distance=3cm, draw, fill, minimum size=0.1cm] (RP){\scriptsize{Reference Portfolio \&} \\ \vspace*{-0.15cm}{\scriptsize Tranche Structure}};
+
+ % \node[above of=A, node distance=1.3cm, text=transparent!40]{\fontfamily{ptm}\fontsize{14}{14}\bfseries\selectfont Analytics};
+ % \node[below of=A, node distance=1.3cm, text=transparent!40]{\fontfamily{ptm}\fontsize{14}{14}\bfseries\selectfont Analytics};
+% \node [above of=A, node distance=1.2cm] (II){Financial  Intermediary};
+% \node[below of=A, node distance=1.3cm]{Analytics};
+
+% \node[draw, block, minimum size=0.1cm] at (0,0)(I){IS \& \\ Lib. Sci.};
+ \node [block2, left of=A,  node distance=4cm] (MM){CDO Seller \\ \vspace*{0.1cm} \texttt{CDS Buyer}};
+% \node [circ, above of=A,  node distance=4cm] (AC){ACTG};
+% \node [circ,  of=A,  node distance=4cm] (LS){Lib. Sci};
+ \node [block2, right of=A,  node distance=4cm] (F){CDO Buyer \\ \vspace*{0.1cm} \texttt{CDS Seller}};
+
+ \node [above of=A, node distance=1cm] (A1){};
+  \node [above of=F, node distance=1cm] (A2){\scriptsize{$t=0$}}; 
+ \node [above of=A2, node distance=0.2cm] (A3){}; 
+  \node [left of=A3, node distance=2cm] (T1){{\scriptsize Purchase \$}};
+  \node [below of=T1, node distance=0.4cm] (T1){{\scriptsize \texttt{}}};
+
+% top left arrow
+  \node [above of=MM, node distance=1cm] (B1){}; 
+ \node [above of=B1, node distance=0.2cm] (B3){}; 
+  \node [right of=B3, node distance=1.95cm] (C1){{\scriptsize }};
+  \node [below of=C1, node distance=0.4cm] (C2){{\scriptsize \texttt{Margin \$}}};
+
+% bottom left arrow
+  \node [below of=MM, node distance=1cm] (D1){\scriptsize{$t=1\ldots ,n$}}; 
+ \node [above of=D1, node distance=0.2cm] (D3){}; 
+  \node [right of=D3, node distance=1.95cm] (D4){{\scriptsize }};
+  \node [below of=D4, node distance=0.4cm] (D5){{\scriptsize \texttt{Premiums}}};
+
+% bottom right arrow
+  \node [below of=F, node distance=1cm] (E1){}; 
+ \node [above of=E1, node distance=0.2cm] (E3){}; 
+  \node [left of=E3, node distance=1.95cm] (E4){{\scriptsize Interest}};
+  \node [below of=E4, node distance=0.4cm] (E5){{\scriptsize \texttt{}}};
+
+ \node [below of=A, node distance=1cm] (ALow){};
+ \node [block_red, below of=A, node distance=2cm] (ALower){Credit Event};
+ \node [below of=A, node distance=2.5cm] (ALowest){};
+ \node [right of=ALowest, node distance=4cm] (Z1){};
+ \node [left of=ALowest, node distance=4cm] (Z2){};
+ \node [below of=ALowest, node distance=0.2cm] (Z3){\scriptsize{Par less the Value of Defaulted Bond} };
+% \node [circ, below of=A,  node distance=4cm] (E){ECON};
+% \node [text=transparent!40]
+%     {\fontfamily{ptm}\fontsize{14}{14}\bfseries\selectfont Databases};
+% \node [diam] (IS) {IS};
+% \node [diam, below of=Likelihood, node distance=2.25cm] (Max){X};
+% \node [end, below of=Max, node distance=2.05cm] (param){Y};
+% \node [block, right of=Max, node distance=6cm] (Rerun){Z};
+% \node [end, above of=Rerun] (state){W};
+% \node [ ,above of=state] (plot){T};
+ \path [line] (A2) -- (A1);
+ \path [line] (A1) -- (B1);
+ \path [line] (D1) -- (ALow);
+ \path [line] (ALow) -- (E1);
+ \path [line] (Z1) -- (Z2);
+% \path [line] (Likelihood)--(Max);
+% \path [line] (Max)--(Rerun);
+% \path [line] (Rerun)--(state);
+% \path [line] (Max)--(param);
+\end{tikzpicture}
+\end{center}
+\end{figure}
+%}}}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Example Synthetic CDO}
+
+\href{https://mattbrigida.shinyapps.io/SCDO/}{\textcolor{blue}{https://mattbrigida.shinyapps.io/SCDO/}}
+
+\end{frame}
+%
+\begin{frame}
+  \frametitle{Application}
+Our company which wants to build a Hydroelectric generating station in Brazil.
+\begin{itemize}
+\item If Brazilian electricity prices fall while constructing the station, our company may incur substantial losses.
+\item Without a method of hedging, this risk may preclude us from making the investment.
+\end{itemize}
+\end{frame}
+%
+\begin{frame}
+  \frametitle{Application}
+We can hedge our risk by selling a Single-Tranche Synthetic CDO on a portfolio of bonds issued by Brazilian electricity producers.
+\begin{itemize}
+\item If the Brazilian electricity producing industrial sector does well, so will our Hydroelectric station.
+\item If the industry experiences trouble, we will incur losses on our station, but these losses are mitigated by payments received on our short Synthetic CDO.
+\end{itemize}
+Since this is a Synthetic CDO we don't have to worry about obtaining actual ownership of the underlying bonds. Buying the bonds may be troublesome if Brazilian markets for the bonds are illiquid, causing high transaction costs.
+\end{frame}
+%
+\begin{frame}
+  \frametitle{Application}
+Since this entails us buying CDS on the bonds, without owning them, this is often termed a naked purchase of CDS. 
+\begin{itemize}
+\item This term is not apt, however, because we are hedging our economic interest in the health of the Brazilian electricity producing industry.
+\end{itemize}
+\end{frame}
+%
+\begin{frame}
+  \frametitle{Open Question}
+Does demand for Synthetic CDOs affect CDO prices?
+\begin{itemize}
+\item Buy Synthetic CDO $\Rightarrow$ Sell Insurance  $\Rightarrow$ Easier to Insure Assets  $\Rightarrow$ Raises Asset Prices  $\Rightarrow$ Lower Rates on CDOs.  
+\end{itemize}
+\vspace*{1cm}
+Need data to test empirically.
+\end{frame}
+
+%
+\begin{frame}
+\begin{center}
+Questions/Comments
+\end{center}
+\end{frame}
+
+\end{document}
